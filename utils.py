@@ -31,7 +31,7 @@ def calc_ade(outputs, targets):
         outputs: np array. 3D array format (trajectory) x (timestep) x (x1y1x2y2)
         targets: np array. 3D array format (trajectory) x (timestep) x (x1y1x2y2)
     Returns:
-        1D array: Average IOU between outputs and targets
+        float: Average IOU between outputs and targets
     '''
     out_mid_xs = (outputs[:, :, 2] + outputs[:, :, 0]) / 2
     out_mid_ys = (outputs[:, :, 3] + outputs[:, :, 1]) / 2
@@ -53,12 +53,12 @@ def calc_fiou(outputs, targets):
         outputs: np array. 3D array format (trajectory) x (timestep) x (x1y1x2y2)
         targets: np array. 3D array format (trajectory) x (timestep) x (x1y1x2y2)
     Returns:
-        1D array: Final IOU between outputs and targets
+        float: Average final IOU between outputs and targets
     '''
     final_outputs = outputs[:, -1, :]
     final_targets = targets[:, -1, :]
     fiou = get_iou(final_outputs, final_targets)
-    return np.mean(fiou)
+    return float(np.mean(fiou))
 
 
 def calc_aiou(outputs, targets):
@@ -69,7 +69,7 @@ def calc_aiou(outputs, targets):
         outputs: np array. 3D array format (trajectory) x (timestep) x (x1y1x2y2)
         targets: np array. 3D array format (trajectory) x (timestep) x (x1y1x2y2)
     Returns:
-        1D array: Average IOU between outputs and targets
+        float: Average IOU between outputs and targets
     '''
     ious = np.zeros((targets.shape[0], targets.shape[1]))
     for t in range(targets.shape[1]):
@@ -77,7 +77,7 @@ def calc_aiou(outputs, targets):
         t_targets = targets[:, t, :]
         t_iou = get_iou(t_outputs, t_targets)
         ious[:, t] = t_iou
-    return np.mean(np.mean(ious, axis=1))
+    return float(np.mean(np.mean(ious, axis=1)))
 
 
 def get_iou(bboxes1, bboxes2):
@@ -88,7 +88,7 @@ def get_iou(bboxes1, bboxes2):
         bbox1 (numpy.array,  list of floats): bounding box in format x1,y1,x2,y2.
         bbox2 (numpy.array, list of floats): bounding box in format x1,y1,x2,y2.
     Returns:
-        int: intersection-over-onion of bbox1, bbox2
+        np array: intersection-over-onion of bboxes1 and bboxes2
     """
     ious = []
     for bbox1, bbox2 in zip(bboxes1, bboxes2):
@@ -113,12 +113,3 @@ def get_iou(bboxes1, bboxes2):
         iou = size_intersection / size_union
         ious.append(iou)
     return ious
-
-
-def cxcywh_to_x1y1x2y2(boxes):
-    old_boxes = boxes.copy()
-    boxes[:, 0, :] = old_boxes[:, 0, :] - (old_boxes[:, 2, :] / 2)
-    boxes[:, 2, :] = old_boxes[:, 0, :] + (old_boxes[:, 2, :] / 2)
-    boxes[:, 1, :] = old_boxes[:, 1, :] - (old_boxes[:, 3, :] / 2)
-    boxes[:, 3, :] = old_boxes[:, 1, :] + (old_boxes[:, 3, :] / 2)
-    return boxes
