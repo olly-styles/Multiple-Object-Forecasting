@@ -81,3 +81,6 @@ The files are organized as follows:
 - y2_t: Bottom bounding box coordinate at t timesteps in the future
 
 Please open an issue if you have any questions.
+
+# Acknowledgements
+We would also like to thank Daniel Sczepansky for collecting the videos used in the Citywalks dataset. Full videos are available at: https://www.youtube.com/poptravelorg
