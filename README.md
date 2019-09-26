@@ -4,7 +4,19 @@ The repo contains the Citywalks dataset and code for the paper:
 
 **Multiple Object Forecasting: Predicting Future Object Locations in Diverse Environments. WACV 2020 (to appear).**
 
-Currently, this repo contains the Citywalks dataset, raw tracking labels, ground truth trajectory labels, metadata, STED trajectory predictions, and evaluation code. More content, including the code for STED, will be added soon.
+Content available:
+
+- The Citywalks dataset
+- Raw tracking labels
+- Ground truth trajectory labels
+- Metadata
+- STED trajectory predictions
+- Evaluation code
+
+Content coming soon:
+
+- STED model code
+- Results on MOT-17
 
 Citywalks contains a total of 501 20-second video clips of which 358 contain at least one valid pedestrian trajectory.  
 
