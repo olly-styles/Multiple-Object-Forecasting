@@ -8,7 +8,9 @@ Currently, this repo contains the Citywalks dataset, raw tracking labels, ground
 
 Citywalks contains a total of 501 20-second video clips of which 358 contain at least one valid pedestrian trajectory.  
 
-![Citywalks](./citywalks.gif "Citywalks")
+<p align="center"> 
+<img src="citywalks.gif">
+</p>
 
 
 # Downloading Citywalks videos
