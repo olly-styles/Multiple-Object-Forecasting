@@ -2,7 +2,7 @@
 
 The repo contains the Citywalks dataset and code for the paper: 
 
-Multiple Object Forecasting: Predicting Future Object Locations in Diverse Environments. WACV 2020 (to appear).
+**Multiple Object Forecasting: Predicting Future Object Locations in Diverse Environments. WACV 2020 (to appear).**
 
 Currently, this repo contains the Citywalks dataset, raw tracking labels, ground truth trajectory labels, metadata, STED trajectory predictions, and evaluation code. More content, including the code for STED, will be added soon.
 
