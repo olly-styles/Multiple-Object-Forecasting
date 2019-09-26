@@ -4,9 +4,12 @@ The repo contains the Citywalks dataset and code for the paper:
 
 Multiple Object Forecasting: Predicting Future Object Locations in Diverse Environments. WACV 2020 (to appear).
 
-Currently, this repo contains the Citywalks dataset, raw tracking labels, ground truth trajectory labels, STED trajectory predictions, and evaluation code. More content, including the code for STED, will be added soon.
+Currently, this repo contains the Citywalks dataset, raw tracking labels, ground truth trajectory labels, metadata, STED trajectory predictions, and evaluation code. More content, including the code for STED, will be added soon.
 
 Citywalks contains a total of 501 20-second video clips of which 358 contain at least one valid pedestrian trajectory.  
+
+![Multiple Object Forecasting](./mof.jpg "Multiple Object Forecasting")
+
 
 # Downloading Citywalks videos
 The raw videos can be downloaded here: [[Google Drive](https://drive.google.com/open?id=1oMN-fsWvEjUZ9Ah_3JwUuIY7cmR0OP_Q)] 
@@ -49,6 +52,26 @@ The files are organized as follows:
 - labelled: 1 if this frame is labelled, 0 otherwise. For a track to be labelled, it must follow at least 29 previous tracked frames and have at least 60 following tracked frames. i.e. the pedestrian must have been tracked continuously for at least 3 seconds.
 - requires_features: 1 if this frame requires features, 0 otherwise. All labelled frames and the previous 29 frames require features. This is the motion history used for MOF.
 
+# Downloading metadata
+
+Weather and time of day metadata is also avaiable [[Google Drive](https://drive.google.com/open?id=163VmkvnB_ruTDUTezsz1jxBJtdoH98Vc)] [[One Drive](https://1drv.ms/u/s!AlCsPcYF4WdzjGacBbIcCK9Xxsda?e=ty0LlL)]
+
+To download from the terminal:
+```bash
+gdown https://drive.google.com/uc?id=163VmkvnB_ruTDUTezsz1jxBJtdoH98Vc
+```
+OR 
+```bash
+wget -O outputs.zip "https://onedrive.live.com/download?cid=7367E105C63DAC50&resid=7367E105C63DAC50%211638&authkey=ALMIImBBNMMCP88"
+```
+
+The file is organized as follows:
+- city: City of original recording
+- time: Time of day (day or night). 'night' is defined as the point at which street lights turn on
+- weather: Weather conditions of recording (sun, overcast, snow, or rain)
+- first_clip: First clip for this city that is labelled with this metadata (inclusive)
+- last_clip: Last clip for this city that is labelled with this metadata (inclusive)
+
 
 # Evaluating Multiple Object Forecasting models
 
@@ -79,6 +102,7 @@ The files are organized as follows:
 - y1_t: Top bounding box coordinate at t timesteps in the future
 - x2_t: Right bounding box coordinate at t timesteps in the future
 - y2_t: Bottom bounding box coordinate at t timesteps in the future
+
 
 Please open an issue if you have any questions.
 
