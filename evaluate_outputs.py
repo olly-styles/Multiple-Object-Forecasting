@@ -16,16 +16,16 @@ parser.add_argument('-gt', help='Path to ground truth directory')
 parser.add_argument('-pred', help='Path to prediction directory')
 args = parser.parse_args()
 
-for detector in ['mask-rcnn', 'yolo']:
+for detector in ['yolo', 'mask-rcnn']:
     aious = []
     fious = []
     ades = []
     fdes = []
-    for fold in [1, 2, 3]:
+    for fold in [1,2,3]:
 
-        gt_df = pd.read_csv(args.gt + '/' + detector + '_fold_' +
+        gt_df = pd.read_csv(args.gt + '/test_' + detector + '_fold_' +
                             str(fold) + '.csv')
-        pred_df = pd.read_csv(args.pred + '/' + detector + '_fold_' +
+        pred_df = pd.read_csv(args.pred + '/test_' + detector + '_fold_' +
                               str(fold) + '.csv')
 
         gt_boxes = gt_df[box_names].values.reshape(len(gt_df), -1, 4)

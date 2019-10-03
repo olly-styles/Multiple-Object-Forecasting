@@ -23,7 +23,7 @@ def calc_fde(outputs, targets):
     return float(np.mean(np.sqrt(diff)))
 
 
-def calc_ade(outputs, targets):
+def calc_ade(outputs, targets, return_mean=True):
     '''
     Calculates the average displacement between outputs and
     targets centroids
@@ -42,7 +42,10 @@ def calc_ade(outputs, targets):
     diff = ((out_mid_xs - tar_mid_xs) * (out_mid_xs - tar_mid_xs)) + \
         ((out_mid_ys - tar_mid_ys) * (out_mid_ys - tar_mid_ys))
 
-    return np.mean(np.sqrt(np.mean(diff, axis=1)))
+    if return_mean:
+        return np.mean(np.sqrt(np.mean(diff, axis=1)))
+    else:
+        return np.sqrt(np.mean(diff, axis=1))
 
 
 def calc_fiou(outputs, targets):
@@ -61,7 +64,7 @@ def calc_fiou(outputs, targets):
     return float(np.mean(fiou))
 
 
-def calc_aiou(outputs, targets):
+def calc_aiou(outputs, targets, return_mean=True):
     '''
     Calculates the average IOU between outputs and
     targets
@@ -77,7 +80,11 @@ def calc_aiou(outputs, targets):
         t_targets = targets[:, t, :]
         t_iou = get_iou(t_outputs, t_targets)
         ious[:, t] = t_iou
-    return float(np.mean(np.mean(ious, axis=1)))
+
+    if return_mean:
+        return float(np.mean(np.mean(ious, axis=1)))
+    else:
+        float(np.mean(ious, axis=1))
 
 
 def get_iou(bboxes1, bboxes2):
@@ -113,3 +120,12 @@ def get_iou(bboxes1, bboxes2):
         iou = size_intersection / size_union
         ious.append(iou)
     return ious
+
+
+def xywh_to_x1y1x2y2(boxes):
+    new_boxes = np.zeros(boxes.shape)
+    new_boxes[:, 0, :] = boxes[:, 0, :] - (boxes[:, 2, :] / 2)
+    new_boxes[:, 1, :] = boxes[:, 1, :] - (boxes[:, 3, :] / 2)
+    new_boxes[:, 2, :] = boxes[:, 0, :] + (boxes[:, 2, :] / 2)
+    new_boxes[:, 3, :] = boxes[:, 1, :] + (boxes[:, 3, :] / 2)
+    return new_boxes
