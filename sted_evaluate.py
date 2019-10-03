@@ -50,15 +50,13 @@ for detector in ['yolo', 'mask-rcnn']:
         encoder.eval()
         decoder.eval()
 
-        path = data_path + detector + '/fold' + str(fold) + '/'
+        path = data_path + detector + '_features/fold' + str(fold) + '/'
 
         print('Loading data')
 
         try:
             train_boxes = np.load(path + 'fold_' + str(fold) + '_train_dtp_box_statistics.npy')
             test_boxes = np.load(path + 'fold_' + str(fold) + '_test_dtp_box_statistics.npy')
-            test_widths = np.load(path + 'fold_' + str(fold) + '_test_dtp_widths.npy')
-            test_heights = np.load(path + 'fold_' + str(fold) + '_test_dtp_heights.npy')
             test_labels = np.load(path + 'fold_' + str(fold) + '_test_dtp_targets.npy')
             test_dtp_features = np.load(path + 'fold_' + str(fold) + '_test_dtp_features.npy')
 

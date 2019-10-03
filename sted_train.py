@@ -41,7 +41,7 @@ for detector in ['yolo', 'mask-rcnn']:
         decoder = decoder.to(device)
         decoder = decoder.float()
 
-        path = data_path + detector + '/fold' + str(fold) + '/'
+        path = data_path + detector + '_features/fold' + str(fold) + '/'
 
         print('Loading data')
 
@@ -50,13 +50,6 @@ for detector in ['yolo', 'mask-rcnn']:
             val_boxes = np.load(path + 'fold_' + str(fold) + '_val_dtp_box_statistics.npy')
             test_boxes = np.load(path + 'fold_' + str(fold) + '_test_dtp_box_statistics.npy')
 
-            train_widths = np.load(path + 'fold_' + str(fold) + '_train_dtp_widths.npy')
-            train_heights = np.load(path + 'fold_' + str(fold) + '_train_dtp_heights.npy')
-            test_widths = np.load(path + 'fold_' + str(fold) + '_test_dtp_widths.npy')
-            test_heights = np.load(path + 'fold_' + str(fold) + '_test_dtp_heights.npy')
-
-            val_widths = np.load(path + 'fold_' + str(fold) + '_val_dtp_widths.npy')
-            val_heights = np.load(path + 'fold_' + str(fold) + '_val_dtp_heights.npy')
             train_labels = np.load(path + 'fold_' + str(fold) + '_train_dtp_targets.npy')
             val_labels = np.load(path + 'fold_' + str(fold) + '_val_dtp_targets.npy')
             test_labels = np.load(path + 'fold_' + str(fold) + '_test_dtp_targets.npy')
@@ -100,8 +93,10 @@ for detector in ['yolo', 'mask-rcnn']:
         best_ade = np.inf
         for epoch in range(num_epochs):
             print('----------- EPOCH ' + str(epoch) + ' -----------')
+            print('Training...')
             trainer.train_seqseq(encoder, decoder, device, train_loader, optimizer_encoder, optimizer_decoder,
                                  epoch, loss_function, learning_rate)
+            print('Validating...')
             val_predictions, val_targets, val_ade, val_fde = trainer.test_seqseq(
                 encoder, decoder, device, val_loader, loss_function, calc_iou=False, return_predictions=True)
             if epoch == 4:
@@ -157,4 +152,3 @@ for detector in ['yolo', 'mask-rcnn']:
         fiou = utils.calc_fiou(gt_boxes, predictions)
         print('AIOU: ', round(aiou * 100, 1))
         print('FIOU: ', round(fiou * 100, 1))
-        assert 1 == 0
