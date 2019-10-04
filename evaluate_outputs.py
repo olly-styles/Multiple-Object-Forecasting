@@ -21,7 +21,7 @@ for detector in ['yolo', 'mask-rcnn']:
     fious = []
     ades = []
     fdes = []
-    for fold in [1,2,3]:
+    for fold in [1, 2, 3]:
 
         gt_df = pd.read_csv(args.gt + '/test_' + detector + '_fold_' +
                             str(fold) + '.csv')

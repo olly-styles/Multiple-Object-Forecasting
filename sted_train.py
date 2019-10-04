@@ -98,7 +98,7 @@ for detector in ['yolo', 'mask-rcnn']:
                                  epoch, loss_function, learning_rate)
             print('Validating...')
             val_predictions, val_targets, val_ade, val_fde = trainer.test_seqseq(
-                encoder, decoder, device, val_loader, loss_function, calc_iou=False, return_predictions=True)
+                encoder, decoder, device, val_loader, loss_function, return_predictions=True)
             if epoch == 4:
                 optimizer_encoder = optim.Adam(encoder.parameters(), lr=1e-4, weight_decay=weight_decay)
                 optimizer_decoder = optim.Adam(decoder.parameters(), lr=1e-4, weight_decay=weight_decay)
@@ -115,7 +115,7 @@ for detector in ['yolo', 'mask-rcnn']:
             print('Best validation ADE: ', np.round(best_ade, 1))
             print('Best validation FDE: ', np.round(best_fde, 1))
 
-        print('Saving model weights')
+        print('Saving model weights to ', model_save_path)
         torch.save(encoder.state_dict(), model_save_path + '/encoder_' + detector + str(fold) + '_gru.weights')
         torch.save(decoder.state_dict(), model_save_path + '/decoder_' + detector + str(fold) + '_gru.weights')
 

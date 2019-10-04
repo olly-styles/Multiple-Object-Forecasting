@@ -111,7 +111,7 @@ for detector in ['yolo', 'mask-rcnn']:
         print('AIOU: ', round(aiou * 100, 1))
         print('FIOU: ', round(fiou * 100, 1))
 
-        print('Saving predictions')
+        print('Saving predictions to ./outputs/sted/test_' + detector + '_fold_' + str(fold) + '.csv')
 
         for i in range(1, 61):
             results_df['x1_' + str(i)] = predictions[:, i - 1, 0]
