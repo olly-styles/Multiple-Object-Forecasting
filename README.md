@@ -6,6 +6,11 @@ The repo contains the Citywalks dataset and code for the paper:
 
 ArXiv paper:   https://arxiv.org/abs/1909.11944
 
+<p align="center"> 
+<img src="mof.jpg" width=40%>
+</p>
+
+
 Content available:
 
 - The Citywalks dataset
@@ -14,20 +19,20 @@ Content available:
 - Metadata
 - STED trajectory predictions
 - Evaluation code
-
-Content coming soon:
-
 - STED model code
-- Results on MOT-17
 
 Citywalks contains a total of 501 20-second video clips of which 358 contain at least one valid pedestrian trajectory.  
+
+
+# Citywalks
 
 <p align="center"> 
 <img src="citywalks.gif">
 </p>
 
 
-# Downloading Citywalks videos
+
+## Downloading Citywalks videos
 The raw videos can be downloaded here: [[Google Drive](https://drive.google.com/open?id=1oMN-fsWvEjUZ9Ah_3JwUuIY7cmR0OP_Q)] 
 [[One Drive](https://1drv.ms/u/s!AlCsPcYF4WdzjGVQzrAPeteUH4rS?e=tET0GY)]
 
@@ -41,7 +46,7 @@ OR
 wget -O citywalks.zip "https://onedrive.live.com/download?cid=7367E105C63DAC50&resid=7367E105C63DAC50%211637&authkey=AJmkgXYpBLsX-CM"
 ```
 
-# Downloading tracking results
+## Downloading tracking results
 
 We use Yolov3 and Mask-RCNN to detect pedestrians, and DeepSORT to track pedestrians. Tracking results can be downloaded here: [[Google Drive](https://drive.google.com/open?id=12-_FiphR5m0Yd455pem13OVnvCvi-yIn)] [[One Drive](https://onedrive.live.com/?authkey=%21AJvssSoCKvoJ2ew&cid=7367E105C63DAC50&id=7367E105C63DAC50%211635&parId=root&action=locate)]
 
@@ -68,7 +73,7 @@ The files are organized as follows:
 - labelled: 1 if this frame is labelled, 0 otherwise. For a track to be labelled, it must follow at least 29 previous tracked frames and have at least 60 following tracked frames. i.e. the pedestrian must have been tracked continuously for at least 3 seconds.
 - requires_features: 1 if this frame requires features, 0 otherwise. All labelled frames and the previous 29 frames require features. This is the motion history used for MOF.
 
-# Downloading metadata
+## Downloading metadata
 
 Weather and time of day metadata is also avaiable [[Google Drive](https://drive.google.com/open?id=163VmkvnB_ruTDUTezsz1jxBJtdoH98Vc)] [[One Drive](https://1drv.ms/u/s!AlCsPcYF4WdzjGacBbIcCK9Xxsda?e=ty0LlL)]
 
@@ -89,7 +94,7 @@ The file is organized as follows:
 - last_clip: Last clip for this city that is labelled with this metadata (inclusive)
 
 
-# Evaluating Multiple Object Forecasting models
+## Evaluating Multiple Object Forecasting models on Citywalks
 
 We use ADE, FDE, AIOU, and FIOU metrics to evaluate Multiple Object Forecasting models on Citywalks. The ground truth trajectories and predictions from STED can be downloaded here: [[Google Drive](https://drive.google.com/open?id=1KZ08pzp1j8P598VNIMR3vSeFcnf3871d)] [[One Drive](https://1drv.ms/u/s!AlCsPcYF4WdzjGTxFjuPdOkhb-4p?e=3nylt1)]
 
@@ -118,6 +123,47 @@ The files are organized as follows:
 - y1_t: Top bounding box coordinate at t timesteps in the future
 - x2_t: Right bounding box coordinate at t timesteps in the future
 - y2_t: Bottom bounding box coordinate at t timesteps in the future
+
+# STED
+
+## Install requirements
+
+```bash
+pip install -r requirements.txt
+```
+
+## Get results from pre-trained model
+
+Note that the output files from the above section must also be downloaded for computing AIOU / FIOU metrics. 
+
+Donwload the models pre-trained on each fold of Citywalks [[Google Drive](https://drive.google.com/open?id=1GGIZEJlD5wNNgCqafevraMJS71AyJ3nF)]
+
+```bash
+gdown https://drive.google.com/uc?id=1GGIZEJlD5wNNgCqafevraMJS71AyJ3nF
+```
+
+We appologise that the data for this section is uploaded on Google Drive only due to file size limitations. Download the DTP features and bounding boxes for YOLO (6GB) [[Google Drive](https://drive.google.com/open?id=1UETpmAglNd-RxoPnpR4jobajSQhySe64)] and Mask-RCNN (11GB) [[Google Drive](https://drive.google.com/open?id=1LBTJrmU7FSQIxM8mcVl4Vl9MN0_x7ccQ)]
+
+```bash
+gdown https://drive.google.com/uc?id=1UETpmAglNd-RxoPnpR4jobajSQhySe64
+gdown https://drive.google.com/uc?id=1LBTJrmU7FSQIxM8mcVl4Vl9MN0_x7ccQ
+```
+
+Run the evaluation code
+
+```bash
+python sted_evaluate.py -model_path PATH_TO_MODEL -data_path PATH_TO_FEATURES
+```
+
+## Train the model
+ 
+Note that the output files from the 'Evaluating Multiple Object Forecasting models' section must also be downloaded for computing AIOU / FIOU metrics.
+
+```bash
+python sted_train.py -model_save_path PATH_TO_SAVE_MODEL -data_path PATH_TO_FEATURES
+```
+
+To compute DTP features for a custom dataset, please refer to our DTP repo - https://github.com/olly-styles/Dynamic-Trajectory-Predictor
 
 
 Please open an issue if you have any questions.
