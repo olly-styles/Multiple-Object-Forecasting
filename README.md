@@ -96,15 +96,11 @@ The file is organized as follows:
 
 ## Evaluating Multiple Object Forecasting models on Citywalks
 
-We use ADE, FDE, AIOU, and FIOU metrics to evaluate Multiple Object Forecasting models on Citywalks. The ground truth trajectories and predictions from STED can be downloaded here: [[Google Drive](https://drive.google.com/open?id=1KZ08pzp1j8P598VNIMR3vSeFcnf3871d)] [[One Drive](https://1drv.ms/u/s!AlCsPcYF4WdzjGTxFjuPdOkhb-4p?e=3nylt1)]
+We use ADE, FDE, AIOU, and FIOU metrics to evaluate Multiple Object Forecasting models on Citywalks. The ground truth trajectories and predictions from STED can be downloaded here: [[Google Drive](https://drive.google.com/open?id=1PXzIOHGScWqhAWXnO4q70fch8wF1DJUx)] 
 
 To download from the terminal:
 ```bash
-gdown https://drive.google.com/uc?id=1KZ08pzp1j8P598VNIMR3vSeFcnf3871d
-```
-OR 
-```bash
-wget -O outputs.zip "https://onedrive.live.com/download?cid=7367E105C63DAC50&resid=7367E105C63DAC50%211636&authkey=AFNJWoXVjzfuNVI"
+gdown https://drive.google.com/uc?id=1PXzIOHGScWqhAWXnO4q70fch8wF1DJUx
 ```
 
 These predictions can then be evaluated using the file ```evaluate_outputs.py```. Example usage:
