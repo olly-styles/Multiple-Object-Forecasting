@@ -126,6 +126,11 @@ The files are organized as follows:
 
 # STED
 
+<p align="center"> 
+<img src="sted.jpg" width=90%>
+</p>
+
+
 ## Install requirements
 
 ```bash
