@@ -164,7 +164,11 @@ Note that the output files from the 'Evaluating Multiple Object Forecasting mode
 python sted_train.py -model_save_path PATH_TO_SAVE_MODEL -data_path PATH_TO_FEATURES
 ```
 
-To compute DTP features for a custom dataset, please refer to our DTP repo - https://github.com/olly-styles/Dynamic-Trajectory-Predictor
+## Training on a custom dataset
+
+To train STED for a custom dataset, optical flow must be computed first. We used the following implementation of Flownet2: https://github.com/NVIDIA/flownet2-pytorch
+
+Following this, DTP features need to be computed. Please refer to our DTP repo - https://github.com/olly-styles/Dynamic-Trajectory-Predictor
 
 
 Please open an issue if you have any questions.
