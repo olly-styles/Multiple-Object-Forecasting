@@ -2,7 +2,7 @@
 
 The repo contains the Citywalks dataset and code for the paper: 
 
-**Multiple Object Forecasting: Predicting Future Object Locations in Diverse Environments. WACV 2020 (to appear).**
+**Multiple Object Forecasting: Predicting Future Object Locations in Diverse Environments. WACV 2020.**
 
 ArXiv paper:   https://arxiv.org/abs/1909.11944
 
