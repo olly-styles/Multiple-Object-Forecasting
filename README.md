@@ -94,6 +94,38 @@ The file is organized as follows:
 - last_clip: Last clip for this city that is labelled with this metadata (inclusive)
 
 
+## Cross-validation split
+
+### Fold 1
+Train cities:
+['BARCELONA', 'BRNO', 'DRESDEN', 'ERFURT', 'KAUNAS', 'KRAKOW', 'LEIPZIG', 'PALMA', 'POZNAN', 'TALLINN', 'VILNIUS', 'WARSAW', 'WEIMAR']
+
+Validation cities:
+['HELSINKI', 'NUREMBERG', 'PRAGUE', 'TARTU']
+
+Test cities:
+['PADUA', 'RIGA', 'VERONA', 'WROCLAW']
+
+### Fold 2
+Train cities:
+['BARCELONA', 'DRESDEN', 'HELSINKI', 'KRAKOW', 'NUREMBERG', 'PADUA', 'POZNAN', 'PRAGUE', 'RIGA', 'TALLINN', 'TARTU', 'VERONA', 'WARSAW', 'WROCLAW']
+
+Validation cities:
+['BRNO', 'KAUNAS', 'LEIPZIG']
+
+Test cities:
+['ERFURT', 'PALMA', 'VILNIUS', 'WEIMAR']
+
+### Fold 3
+Train cities:
+['BRNO', 'ERFURT', 'HELSINKI', 'KAUNAS', 'LEIPZIG', 'NUREMBERG', 'PADUA', 'PALMA', 'PRAGUE', 'RIGA', 'TARTU', 'VERONA', 'VILNIUS', 'WEIMAR', 'WROCLAW']
+
+Validation cities:
+['KRAKOW', 'POZNAN', 'TALLINN']
+
+Test cities:
+['BARCELONA', 'DRESDEN', 'WARSAW']
+
 ## Evaluating Multiple Object Forecasting models on Citywalks
 
 We use ADE, FDE, AIOU, and FIOU metrics to evaluate Multiple Object Forecasting models on Citywalks. The ground truth trajectories and predictions from STED can be downloaded here: [[Google Drive](https://drive.google.com/open?id=1PXzIOHGScWqhAWXnO4q70fch8wF1DJUx)] 
