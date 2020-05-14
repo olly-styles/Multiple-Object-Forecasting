@@ -175,7 +175,7 @@ Donwload the models pre-trained on each fold of Citywalks [[Google Drive](https:
 gdown https://drive.google.com/uc?id=1GGIZEJlD5wNNgCqafevraMJS71AyJ3nF
 ```
 
-We appologise that the data for this section is uploaded on Google Drive only due to file size limitations. Download the DTP features and bounding boxes for YOLO (6GB) [[Google Drive](https://drive.google.com/open?id=1UETpmAglNd-RxoPnpR4jobajSQhySe64)] and Mask-RCNN (11GB) [[Google Drive](https://drive.google.com/open?id=1LBTJrmU7FSQIxM8mcVl4Vl9MN0_x7ccQ)]
+Download the DTP features and bounding boxes for YOLO (6GB) [[Google Drive](https://drive.google.com/open?id=1UETpmAglNd-RxoPnpR4jobajSQhySe64)] [[One Drive](https://livewarwickac-my.sharepoint.com/:u:/g/personal/csunem_live_warwick_ac_uk/EQPkyPbipyRDrJUuLBGtndgBH0DgaSLh4ZsH_V-0HzQZXg?e=xnJJIv)] and Mask-RCNN (11GB) [[Google Drive](https://drive.google.com/open?id=1LBTJrmU7FSQIxM8mcVl4Vl9MN0_x7ccQ)] [[One Drive](https://livewarwickac-my.sharepoint.com/:u:/g/personal/csunem_live_warwick_ac_uk/EUrcqQmkM19DlXxMWzj-NRYBsXnwHGe-WnYHGWQ3aMJBdg?e=xVjrEk)]
 
 ```bash
 gdown https://drive.google.com/uc?id=1UETpmAglNd-RxoPnpR4jobajSQhySe64
